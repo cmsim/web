@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <Logos mb-6 />
     <Suspense>
       <PageView />
