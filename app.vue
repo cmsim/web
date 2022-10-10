@@ -16,6 +16,9 @@ useHead({
 </template>
 
 <style>
+* {
+  box-sizing: border-box;
+}
 html, body , #__nuxt{
   font-family: system-ui, -apple-system, BlinkMacSystemFont,
     'SF Pro SC', 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei',
@@ -23,10 +26,6 @@ html, body , #__nuxt{
   height: 100vh;
   margin: 0;
   padding: 0;
-}
-
-html.dark {
-  background: #222;
-  color: white;
+  background-color: #f5f6f7;
 }
 </style>

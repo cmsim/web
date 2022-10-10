@@ -1,5 +1,3 @@
-import { defineNuxtConfig } from 'nuxt/config'
-
 export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
@@ -15,5 +13,8 @@ export default defineNuxtConfig({
   },
   colorMode: {
     classSuffix: '',
+  },
+  typescript: {
+    shim: false,
   },
 })
