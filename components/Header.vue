@@ -1,5 +1,5 @@
 <template>
-  <div class="border border-gray-100" bg="white">
+  <div class="border border-gray-100 z-10" bg="white" pos="fixed left-0 right-0 top-0">
     <div class="w-[1200px] mx-auto">
       <div h-16 flex justify="between" items-center>
         <div w-36 text="xl gray-700">

@@ -8,6 +8,9 @@ export default defineNuxtConfig({
   experimental: {
     reactivityTransform: true,
   },
+  plugins: [
+    { src: '~/plugins/virtual' },
+  ],
   unocss: {
     preflight: true,
   },
