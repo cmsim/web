@@ -35,8 +35,8 @@
       <div flex-grow mx-4>
         <slot />
       </div>
-      <div class="w-70" bg="gray-200">
-        <div class="">
+      <div class="w-70">
+        <div pos="fixed" bg="white" class="w-70">
           111
         </div>
       </div>

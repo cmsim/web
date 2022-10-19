@@ -1,6 +1,6 @@
 <script setup>
 useHead({
-  title: 'Vitesse Nuxt 3',
+  title: 'cwg',
   link: [
     {
       rel: 'icon', type: 'image/png', href: '/nuxt.png',
@@ -10,9 +10,12 @@ useHead({
 </script>
 
 <template>
-  <NuxtLayout cl>
-    <NuxtPage />
-  </NuxtLayout>
+  <div>
+    <NuxtLayout>
+      <NuxtLoadingIndicator />
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
 </template>
 
 <style>

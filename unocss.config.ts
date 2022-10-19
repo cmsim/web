@@ -1,3 +1,4 @@
+import { presetCore, presetThemeDefault } from 'anu-vue'
 import {
   defineConfig,
   presetAttributify,
@@ -28,9 +29,13 @@ export default defineConfig({
         mono: 'DM Mono',
       },
     }),
+    // anu-vue presets
+    presetCore(),
+    presetThemeDefault(),
   ],
   transformers: [
     transformerDirectives(),
     transformerVariantGroup(),
   ],
+  include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
 })
