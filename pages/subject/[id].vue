@@ -1,6 +1,5 @@
 <script setup lang="ts">
 definePageMeta({
-  layout: 'subject',
   key: route => route.fullPath,
 })
 const route = useRoute()
