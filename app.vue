@@ -1,4 +1,5 @@
 <script setup>
+import '@unocss/reset/tailwind.css'
 useHead({
   title: 'cwg',
   link: [
