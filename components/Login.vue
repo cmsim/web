@@ -3,17 +3,13 @@ import { Form } from 'vee-validate'
 import * as Yup from 'yup'
 import md5 from 'md5'
 import type { IUser } from '~~/typings'
-const props = defineProps({
-  getUser: {
-    type: Function,
-    default: () => {},
-  },
-})
+
+const props = defineProps<{ getUser: () => void }>()
 const emit = defineEmits(['close', 'reg', 'getUser'])
 const onSubmit = async (values: IUser) => {
   const res = await login({ ...values, password: md5(values.password!) })
   localStorage.token = res.data
-  await props.getUser()
+  await props.getUser?.()
   await emit('close')
 }
 

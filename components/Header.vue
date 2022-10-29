@@ -30,12 +30,14 @@ const onJump = async (name: string) => {
 </script>
 
 <template>
-  <div class="border border-gray-100 z-10" bg="white" pos="fixed left-0 right-0 top-0">
+  <div class="border border-gray-100 z-10" bg="white/85" pos="fixed left-0 right-0 top-0" backdrop="blur-md">
     <div class="w-[1200px] mx-auto">
       <div h-16 flex justify="between" items-center>
-        <div w-36 text="xl gray-700">
-          cwg
-        </div>
+        <NuxtLink to="/">
+          <div w-36 text="xl gray-700">
+            cwg
+          </div>
+        </NuxtLink>
         <div relative>
           <input w-96 h-9 border="gray-200 rounded" bg="gray-100" outline="0" px-3 text="gray-600">
           <div class="i-carbon-search right-2 top-2 absolute" text="gray-400" cursor="pointer" />
@@ -59,6 +61,7 @@ const onJump = async (name: string) => {
       </div>
     </div>
     <ADialog
+      v-if="isLogin"
       v-model="isLogin"
       title="登录"
     >
@@ -66,6 +69,7 @@ const onJump = async (name: string) => {
     </ADialog>
 
     <ADialog
+      v-if="isReg"
       v-model="isReg"
       title="注册"
     >

@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { ISubject } from '~~/typings'
 
 export const useSubjectStore = defineStore('subject', () => {
@@ -23,3 +23,6 @@ export const useSubjectStore = defineStore('subject', () => {
     getSubjectList,
   }
 })
+
+if (import.meta.hot)
+  import.meta.hot.accept(acceptHMRUpdate(useSubjectStore, import.meta.hot))

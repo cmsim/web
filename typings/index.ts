@@ -69,13 +69,16 @@ export interface IUser extends IDate {
 }
 
 export interface IFeed extends IHits, IDate, Omit<IId, 'cid'> {
-  type: number
+  type: 'follow' | 'score' | 'evaluate' | 'add' | 'update' | 'wish' | 'collect' | 'do' | 'on_hold' | 'dropped' | 'add_friend' | 'feed' // 类型:follow关注|score评分|evaluate评价|add添加|update更新|想看wish|看过collect|在看do|搁置on_hold|抛弃dropped|add_friend加好友|feed动态
   ip: number
   expired_at: string
   comment_count: number
   like_count: number
   forward_count: number
   collection_count: number
+  time: string
+  subject: ISubject
+  user: IUser
 }
 
 export interface IMcat {

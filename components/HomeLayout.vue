@@ -1,7 +1,7 @@
 <template>
   <div flex="~" class="w-[1200px] mx-auto mt-20">
-    <div class="w-48">
-      <nav bg="white" class="shadow-sm p-2 w-48" border="rounded-[4px]" pos="fixed">
+    <div w-48 border="r gray-100">
+      <nav bg="white" p-2 w-48 border="r gray-100" pos="fixed">
         <div class="px-4 h-10 flex items-center rounded-sm cursor-pointer" hover="bg-blue-100 text-blue-700">
           <i i-carbon-update-now class="inline-block mr-2" />最新
         </div>
@@ -30,11 +30,11 @@
         </ul>
       </nav>
     </div>
-    <div flex-grow mx-4>
+    <div flex-grow>
       <slot />
     </div>
-    <div class="w-70">
-      <div pos="fixed" bg="white" class="w-70">
+    <div w-70 border="l gray-100">
+      <div pos="fixed" bg="white" w-70>
         111
       </div>
     </div>

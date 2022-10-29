@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const subject = useSubjectStore()
-await subject.getSubjectList()
-const list = $computed(() => subject.subjectList)
+const feed = useFeedStore()
+await feed.list()
+const feedList = $computed(() => feed.feedList)
 </script>
 
 <template>
@@ -9,7 +9,7 @@ const list = $computed(() => subject.subjectList)
     <HomeLayout>
       <div pos="relative">
         <DynamicScroller
-          :items="list"
+          :items="feedList"
           :buffer="500"
           :min-item-size="50"
           :prerender="20"
@@ -24,14 +24,7 @@ const list = $computed(() => subject.subjectList)
               ]"
               :data-index="index"
             >
-              <NuxtLink :to="`/subject/${item.id}`">
-                <div class="w-20 h-20">
-                  <img class="w-20 h-20" :src="item.pic">
-                </div>
-                <div class="text">
-                  {{ item.name }}
-                </div>
-              </NuxtLink>
+              <Feed :data="item" />
             </DynamicScrollerItem>
           </template>
         </DynamicScroller>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import md5 from 'md5'
 import { Form } from 'vee-validate'
 import * as Yup from 'yup'
 import type { IUser } from '~~/typings'
