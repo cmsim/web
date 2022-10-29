@@ -1,6 +1,6 @@
 <template>
   <div
-    border="t gray-100"
+    border="t gray-100 dark:warm-gray-800"
     text="xl gray4"
     p-5
     flex

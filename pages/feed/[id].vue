@@ -8,7 +8,7 @@ console.log(id, 'id')
 </script>
 
 <template>
-  <div>
+  <div mt-20>
     {{ id }}
   </div>
 </template>

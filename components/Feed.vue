@@ -4,11 +4,11 @@ const { data } = defineProps<{ data: IFeed }>()
 </script>
 
 <template>
-  <div flex bg="white" p="5" border="b gray-100 solid" cursor="pointer" hover="bg-light-200" @click.stop="go('feed', data?.id)">
-    <div class="w-12">
+  <div flex bg="white dark:#121212" p="5" border="b gray-100 dark:warm-gray-800" cursor="pointer" hover="bg-light-200" @click.stop="go('feed', data?.id)">
+    <div w-12>
       <Avatar :user="data?.user" />
     </div>
-    <div class="flex-grow ml-4">
+    <div flex="grow" ml-4>
       <Uesr :data="data" />
       <Subject v-if="data?.subject" :subject="data?.subject" />
     </div>

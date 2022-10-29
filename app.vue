@@ -31,4 +31,7 @@ html, body , #__nuxt{
   margin: 0;
   padding: 0;
 }
+.dark {
+  background-color: #121212;
+}
 </style>

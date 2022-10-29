@@ -30,27 +30,34 @@ const onJump = async (name: string) => {
 </script>
 
 <template>
-  <div class="border border-gray-100 z-10" bg="white/85" pos="fixed left-0 right-0 top-0" backdrop="blur-md">
-    <div class="w-[1200px] mx-auto">
+  <div border="b gray-100 dark:warm-gray-800" z-10 bg="white/85 dark:#121212/85" pos="fixed left-0 right-0 top-0" backdrop="blur-md">
+    <div w-1200px mx="auto">
       <div h-16 flex justify="between" items-center>
         <NuxtLink to="/">
-          <div w-36 text="xl gray-700">
+          <div w-36 text="xl gray-700" dark="text-white">
             cwg
           </div>
         </NuxtLink>
         <div relative>
-          <input w-96 h-9 border="gray-200 rounded" bg="gray-100" outline="0" px-3 text="gray-600">
-          <div class="i-carbon-search right-2 top-2 absolute" text="gray-400" cursor="pointer" />
+          <input w-96 h-9 border="gray-200 rounded dark:warm-gray-900" bg="gray-100 dark:warm-gray-800" outline="0" px-3 text="gray-600 dark:gray-300">
+          <div class="i-carbon-search" pos="absolute right-2 top-2" text="gray-400 dark:warm-gray-600" cursor="pointer" />
         </div>
         <div v-if="userInfo?.username">
-          <img :src="userInfo?.avatar" class="w-10 rounded-full cursor-pointer">
+          <NuxtImg
+            v-if="userInfo?.avatar"
+            width="40"
+            format="webp"
+            :src="userInfo?.avatar"
+            :alt="userInfo?.nickname"
+            w-10 h-10 cursor="pointer" rounded="full" object-cover
+          />
           <AMenu trigger="hover">
             <ACard>
               <ATypography
                 v-for="(item, i) in items" :key="i"
                 :title="item.title"
-                class="text-sm px-4 py-1 cursor-pointer"
-                hover="bg-true-gray-100" @click="onJump(item.name)"
+                text-sm px-4 py-1 cursor="pointer"
+                hover="bg-gray-100 dark:bg-warm-gray-700" @click="onJump(item.name)"
               />
             </ACard>
           </AMenu>

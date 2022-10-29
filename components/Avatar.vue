@@ -5,7 +5,14 @@ const { user } = defineProps<{ user?: IUser }>()
 </script>
 
 <template>
-  <div class="w-12 h-12 rounded-full">
-    <img :src="user?.avatar" class="w-12 h-12 rounded-full" :alt="user?.nickname">
+  <div w-12 h-12 rounded="full">
+    <NuxtImg
+      v-if="user?.avatar"
+      width="48"
+      format="webp"
+      :src="user?.avatar"
+      :alt="user?.nickname"
+      w-12 h-12 rounded="full" object-cover
+    />
   </div>
 </template>
