@@ -1,7 +1,7 @@
 import { $fetch } from 'ohmyfetch'
 import LRU from 'lru-cache'
 import { hash as ohash } from 'ohash'
-import type { IFeed, IListResponse, ISubject, IUser, PageResult } from '~~/typings'
+import type { IFavorite, IFeed, IListResponse, ISubject, IUser, PageResult } from '~~/typings'
 
 const cache = new LRU({
   max: 500,
@@ -135,3 +135,13 @@ export function getFeedList(params = {}): Promise<IListResponse<IFeed>> {
 export function getFeed(id: string): Promise<PageResult<IFeed>> {
   return fetchCWG(`/api/feed/${id}`)
 }
+
+/**
+ * 添加收藏
+ * @param 参数
+ * @returns IFavorite
+ */
+export function addFavorite(params = {}): Promise<PageResult<IFavorite>> {
+  return fetchCWG('/api/favorite/add', params, 'POST')
+}
+

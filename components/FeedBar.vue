@@ -1,14 +1,18 @@
 <script lang="ts" setup>
 import type { IFeed } from '~~/typings'
 const { data } = defineProps<{ data: IFeed }>()
-const onAction = () => {
+const onAction = async (type: string) => {
   console.log(1111)
+  if (type === 'like') {
+    const res = await addFavorite({ sid: data.sid, aid: data.subject.id })
+    console.log(res)
+  }
 }
 </script>
 
 <template>
   <div flex justify="between" mt-2 relative class="-left-2">
-    <div flex items-center class="group" justify="center" @click.stop="onAction">
+    <div flex items-center class="group" justify="center" @click.stop="onAction('comment')">
       <div flex="~" justify="center" items-center w-9 h-9 rounded="full" group-hover="bg-#1d9bf0/10 text-#1d9bf0">
         <i i-carbon-chat w-5 h-5 />
       </div>
@@ -16,7 +20,7 @@ const onAction = () => {
         {{ data.comment_count || '' }}
       </div>
     </div>
-    <div flex items-center class="group" @click.stop="onAction">
+    <div flex items-center class="group" @click.stop="onAction('forward')">
       <div flex="~" justify="center" items-center w-9 h-9 rounded="full" group-hover="bg-#00ba7c/10 text-#00ba7c">
         <i i-carbon-arrows-horizontal w-5 h-5 />
       </div>
@@ -24,7 +28,7 @@ const onAction = () => {
         {{ data.forward_count || '' }}
       </div>
     </div>
-    <div flex items-center class="group" @click.stop="onAction">
+    <div flex items-center class="group" @click.stop="onAction('like')">
       <div flex="~" justify="center" items-center w-9 h-9 rounded="full" group-hover="bg-#f91880/10 text-#f91880">
         <i i-carbon-favorite w-5 h-5 />
       </div>
@@ -32,7 +36,7 @@ const onAction = () => {
         {{ data.like_count || '' }}
       </div>
     </div>
-    <div flex items-center class="group" @click.stop="onAction">
+    <div flex items-center class="group" @click.stop="onAction('share')">
       <div flex="~" justify="center" items-center w-9 h-9 rounded="full" group-hover="bg-#1d9bf0/10 text-#1d9bf0">
         <i i-carbon-export w-5 h-5 />
       </div>
