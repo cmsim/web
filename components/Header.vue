@@ -40,7 +40,7 @@ const onJump = async (name: string) => {
         </NuxtLink>
         <div relative>
           <input w-96 h-9 border="gray-200 rounded dark:warm-gray-900" bg="gray-100 dark:warm-gray-800" outline="0" px-3 text="gray-600 dark:gray-300">
-          <div class="i-carbon-search" pos="absolute right-2 top-2" text="gray-400 dark:warm-gray-600" cursor="pointer" />
+          <div i-carbon-search pos="absolute right-2 top-2" text="gray-400 dark:warm-gray-600" cursor="pointer" />
         </div>
         <div v-if="userInfo?.username">
           <NuxtImg
@@ -51,7 +51,7 @@ const onJump = async (name: string) => {
             :alt="userInfo?.nickname"
             w-10 h-10 cursor="pointer" rounded="full" object-cover
           />
-          <AMenu trigger="hover">
+          <AMenu trigger="hover" placement="bottom-end">
             <ACard>
               <ATypography
                 v-for="(item, i) in items" :key="i"
