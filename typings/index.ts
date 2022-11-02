@@ -31,7 +31,7 @@ export interface IId {
   cid?: number
   uid?: number
   sid?: number
-  aid?: number
+  aid?: number | string
   status?: string
 }
 
@@ -73,7 +73,8 @@ export interface IFeed extends IHits, IDate, Omit<IId, 'cid'> {
   ip: number
   expired_at: string
   comment_count: number
-  like_count: number
+  up: number
+  down: number
   forward_count: number
   collection_count: number
   time: string
@@ -413,10 +414,9 @@ export interface IListcategory extends IDate, IId {
   remark: string
 }
 
-export interface IDigg extends Omit<IDate, 'updated_at'>, Omit<IId, 'status'> {
-  up: number
-  down: number
-  ip: number
+export interface IDigg extends Omit<IDate, 'updated_at'>, Omit<IId, 'status' | 'cid'> {
+  type: 'up' | 'down'
+  ip?: number
 }
 
 export interface ISts {

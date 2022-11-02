@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { IFeed } from '~~/typings'
+import type { IDigg, IFeed } from '~~/typings'
 
 export const useFeedStore = defineStore('feed', () => {
   const feedData = ref<IFeed>()
@@ -16,11 +16,23 @@ export const useFeedStore = defineStore('feed', () => {
       feedList.value = data.list
   }
 
+  async function onDigg(params: IDigg & { index: number }) {
+    const { index } = params
+    console.log(index, 'index')
+    const res = await addDigg(params)
+    if (res.data) {
+      if (feedList.value && feedList.value?.[0])
+        feedList.value[index].up = feedList.value[index].up + 1
+    }
+    return res
+  }
+
   return {
     feedData,
     feedList,
     feed,
     list,
+    onDigg,
   }
 })
 

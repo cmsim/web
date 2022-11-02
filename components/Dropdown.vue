@@ -19,9 +19,11 @@ const dropdownHandler: OnClickOutsideHandler = (event) => {
   console.log(event)
   dropdown.value = false
 }
+
 const onClick = (item: DropdownItem) => {
-  console.log(item)
+  cur.value = item.key
   onOk?.(item)
+  dropdown.value = false
 }
 </script>
 

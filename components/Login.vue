@@ -2,7 +2,6 @@
 import { Form } from 'vee-validate'
 import * as Yup from 'yup'
 import md5 from 'md5'
-import type { IUser } from '~~/typings'
 
 const props = defineProps<{ getUser: () => void }>()
 const emit = defineEmits(['close', 'reg', 'getUser'])

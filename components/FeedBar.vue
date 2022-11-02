@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import type { IFeed } from '~~/typings'
-const { data } = defineProps<{ data: IFeed }>()
+import { modelName } from '~~/typings/enum'
+const { data, index } = defineProps<{ data: IFeed; index: number }>()
+const feed = useFeedStore()
 const onAction = async (type: string) => {
   console.log(1111)
   if (type === 'like') {
-    const res = await addFavorite({ sid: data.sid, aid: data.subject.id })
+    const res = await feed.onDigg({ sid: modelName.FEED, aid: data.id, type: 'up', index })
     console.log(res)
   }
 }
@@ -33,7 +35,7 @@ const onAction = async (type: string) => {
         <i i-carbon-favorite w-5 h-5 />
       </div>
       <div group-hover="text-#f91880" ml-1 text="sm">
-        {{ data.like_count || '' }}
+        {{ data.up || '' }}
       </div>
     </div>
     <div flex items-center class="group" @click.stop="onAction('share')">

@@ -25,7 +25,7 @@ const feedList = $computed(() => feed.feedList)
               ]"
               :data-index="index"
             >
-              <Feed :data="item" />
+              <Feed :data="item" :index="index" />
             </DynamicScrollerItem>
           </template>
         </DynamicScroller>

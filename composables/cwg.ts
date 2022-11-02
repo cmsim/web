@@ -1,11 +1,11 @@
 import { $fetch } from 'ohmyfetch'
 import LRU from 'lru-cache'
 import { hash as ohash } from 'ohash'
-import type { IFavorite, IFeed, IListResponse, ISubject, IUser, PageResult } from '~~/typings'
+import type { IDigg, IFavorite, IFeed, IListResponse, ISubject, IUser, PageResult } from '~~/typings'
 
 const cache = new LRU({
   max: 500,
-  ttl: 2000 * 60 * 60, // 2 hour
+  ttl: 2 * 60 * 60, // 2000 * 60 * 60, // 2 hour
 })
 
 /**
@@ -143,5 +143,14 @@ export function getFeed(id: string): Promise<PageResult<IFeed>> {
  */
 export function addFavorite(params = {}): Promise<PageResult<IFavorite>> {
   return fetchCWG('/api/favorite/add', params, 'POST')
+}
+
+/**
+ * 点赞
+ * @param 参数
+ * @returns IDigg
+ */
+export function addDigg(params = {}): Promise<PageResult<IDigg>> {
+  return fetchCWG('/api/digg/add', params, 'POST')
 }
 
