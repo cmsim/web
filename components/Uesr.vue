@@ -1,24 +1,17 @@
 <script lang="ts" setup>
-import type { OnClickOutsideHandler } from '@vueuse/core'
 import type { IFeed } from '~~/typings'
 import { FeedType } from '~~/typings/enum'
 const { data } = defineProps<{ data: IFeed }>()
 
 const items = [
-  { title: '剧集', name: 'subject' },
-  { title: '评论', name: 'comment' },
-  { title: '动态', name: 'feed' },
-  { title: '退出', name: 'logout' },
+  { label: '剧集', key: 'subject' },
+  { label: '评论', key: 'comment' },
+  { label: '动态', key: 'feed' },
+  { label: '退出', key: 'logout' },
 ]
 
-const onJump = async (name: string) => {
-  console.log(name, 'xxxx')
-}
-
-const dropdown = ref(false)
-const dropdownHandler: OnClickOutsideHandler = (event) => {
-  console.log(event)
-  dropdown.value = false
+const onOK = async (item: typeof items[0]) => {
+  console.log(item)
 }
 </script>
 
@@ -36,19 +29,10 @@ const dropdownHandler: OnClickOutsideHandler = (event) => {
         <span>web</span>
       </div>
     </div>
-    <div relative>
-      <div w-9 h-9 flex justify="center" items-center hover="bg-#1d9bf0/10 text-#1d9bf0" rounded="full" @click.stop="dropdown = !dropdown">
+    <Dropdown :menu="items" :on-ok="onOK">
+      <div w-9 h-9 flex justify="center" items-center hover="bg-#1d9bf0/10 text-#1d9bf0" rounded="full">
         <div i-carbon-overflow-menu-horizontal />
       </div>
-      <Transition name="slide-up">
-        <div v-if="dropdown" v-on-click-outside.bubble="dropdownHandler" max-h-60 w-30 overflow-y-auto rounded-md shadow-lg ring-1 ring-black ring-opacity-5 bg="white dark:warm-gray-900" text="base #121212 dark:gray-300" absolute right-0 z-10>
-          <div v-for="item in items" :key="item.name" flex justify-between cursor-pointer select-none py-2 px-4 hover:bg="gray-100 dark:warm-gray-700" hover:text="dark:gray-300">
-            <div block truncate>
-              {{ item.title }}
-            </div>
-          </div>
-        </div>
-      </Transition>
-    </div>
+    </Dropdown>
   </div>
 </template>

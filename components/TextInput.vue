@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { AInput } from 'anu-vue'
 import { toRef } from 'vue'
 import { useField } from 'vee-validate'
 

@@ -6,7 +6,7 @@ import type { IUser } from '~~/typings'
 
 const props = defineProps<{ getUser: () => void }>()
 const emit = defineEmits(['close', 'reg', 'getUser'])
-const onSubmit = async (values: IUser) => {
+const onSubmit = async (values: any) => {
   const res = await login({ ...values, password: md5(values.password!) })
   localStorage.token = res.data
   await props.getUser?.()
