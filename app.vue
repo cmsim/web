@@ -1,5 +1,6 @@
 <script setup>
-import '@unocss/reset/tailwind.css'
+import 'anu-vue/dist/style.css'
+
 useHead({
   title: 'cwg',
   link: [

@@ -8,6 +8,7 @@ const feedList = $computed(() => feed.feedList)
   <div>
     <HomeLayout>
       <div pos="relative">
+        <Chat />
         <DynamicScroller
           :items="feedList"
           :buffer="500"
@@ -33,7 +34,7 @@ const feedList = $computed(() => feed.feedList)
   </div>
 </template>
 
-<style scoped>
+<style>
 .scroller {
   height: 100%;
 }

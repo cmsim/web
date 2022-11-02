@@ -11,7 +11,6 @@ export default defineNuxtConfig({
   },
   plugins: [
     { src: '~/plugins/virtual' },
-    { src: '~/plugins/anu' },
     { src: '~/plugins/getAuth', ssr: false },
   ],
   unocss: {
