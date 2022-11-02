@@ -12,6 +12,7 @@ export enum FeedType {
   dropped = '抛弃',
   add_friend = '将', // 加好友
   feed = '说', // 动态
+  up = '赞了',
 }
 
 /* 模型sid */
@@ -34,4 +35,23 @@ export enum modelName {
   ACOTR, // 演员表
   USER, // 用户
   LINK, // 链接
+}
+
+export const sidName = {
+  [modelName.SUBJECT]: 'subject',
+  [modelName.NEWS]: 'news',
+  [modelName.STAR]: 'star',
+  [modelName.STORY]: 'story',
+  [modelName.EPISODE]: 'episode',
+  [modelName.ROLE]: 'role',
+  [modelName.FAVORITE]: 'favorite',
+  [modelName.TAG]: 'tag',
+  [modelName.PINS]: 'pins',
+  [modelName.FORWARD]: 'forward',
+  [modelName.COMMENT]: 'comment',
+  [modelName.REPLY]: 'reply',
+  [modelName.FEED]: 'feed',
+  [modelName.TOPIC]: 'topic',
+  [modelName.DETAILEDLIST]: 'detailedlist',
+  [modelName.ACOTR]: 'actors',
 }

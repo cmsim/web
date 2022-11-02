@@ -1,9 +1,10 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { IDigg, IFeed } from '~~/typings'
+import { sidName } from '~~/typings/enum'
 
 export const useFeedStore = defineStore('feed', () => {
   const feedData = ref<IFeed>()
-  const feedList = ref<IFeed[]>()
+  const feedList = ref<(IFeed & { [key: string]: any })[]>()
   async function feed(id: string) {
     const { data } = await getFeed(id)
     if (data)
@@ -16,15 +17,20 @@ export const useFeedStore = defineStore('feed', () => {
       feedList.value = data.list
   }
 
-  async function onDigg(params: IDigg & { index: number }) {
-    const { index } = params
-    console.log(index, 'index')
+  async function onDigg(params: IDigg) {
     const res = await addDigg(params)
+    const sid = params?.sid as 1
+    const s = sidName[sid]
     if (res.data) {
-      if (feedList.value && feedList.value?.[0])
-        feedList.value[index].up = feedList.value[index].up + 1
+      feedList.value?.forEach((item, i) => {
+        if (item[sidName[sid]].id === params?.aid) {
+          if (feedList.value && feedList.value[i] && feedList.value[i][s])
+            feedList.value[i][sidName[sid]].up = feedList.value[i][sidName[sid]].up + 1
+        }
+      })
+
+      return res
     }
-    return res
   }
 
   return {

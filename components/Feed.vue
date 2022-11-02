@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { IFeed } from '~~/typings'
-const { data, index } = defineProps<{ data: IFeed; index: number }>()
+const { data } = defineProps<{ data: IFeed }>()
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const { data, index } = defineProps<{ data: IFeed; index: number }>()
     <div flex="grow" ml-4>
       <Uesr :data="data" />
       <Subject v-if="data?.subject" :subject="data?.subject" />
-      <FeedBar :data="data" :index="index" />
+      <FeedBar :data="data" />
     </div>
   </div>
 </template>

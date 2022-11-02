@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import type { IFeed } from '~~/typings'
-import { modelName } from '~~/typings/enum'
-const { data, index } = defineProps<{ data: IFeed; index: number }>()
+import { sidName } from '~~/typings/enum'
+const { data } = defineProps<{ data: IFeed & { [key: string]: any } }>()
 const feed = useFeedStore()
+const sid = data.sid as keyof typeof sidName
+const model = sidName[sid]
 const onAction = async (type: string) => {
-  console.log(1111)
-  if (type === 'like') {
-    const res = await feed.onDigg({ sid: modelName.FEED, aid: data.id, type: 'up', index })
+  if (type === 'up') {
+    const res = await feed.onDigg({ sid, aid: data?.[model]?.id, type: 'up' })
     console.log(res)
   }
 }
@@ -19,7 +20,7 @@ const onAction = async (type: string) => {
         <i i-carbon-chat w-5 h-5 />
       </div>
       <div group-hover="text-#1d9bf0" ml-1 text="sm">
-        {{ data.comment_count || '' }}
+        {{ data?.[model]?.comment_count || '' }}
       </div>
     </div>
     <div flex items-center class="group" @click.stop="onAction('forward')">
@@ -27,7 +28,7 @@ const onAction = async (type: string) => {
         <i i-carbon-arrows-horizontal w-5 h-5 />
       </div>
       <div group-hover="text-#00ba7c" ml-1 text="sm">
-        {{ data.forward_count || '' }}
+        {{ data?.[model]?.forward_count || '' }}
       </div>
     </div>
     <div flex items-center class="group" @click.stop="onAction('like')">
@@ -35,7 +36,15 @@ const onAction = async (type: string) => {
         <i i-carbon-favorite w-5 h-5 />
       </div>
       <div group-hover="text-#f91880" ml-1 text="sm">
-        {{ data.up || '' }}
+        {{ data?.[model]?.like_count || '' }}
+      </div>
+    </div>
+    <div flex items-center class="group" @click.stop="onAction('up')">
+      <div flex="~" justify="center" items-center w-9 h-9 rounded="full" group-hover="bg-#f91880/10 text-#f91880">
+        <i i-carbon-thumbs-up w-5 h-5 />
+      </div>
+      <div group-hover="text-#f91880" ml-1 text="sm">
+        {{ data?.[model]?.up || '' }}
       </div>
     </div>
     <div flex items-center class="group" @click.stop="onAction('share')">

@@ -21,7 +21,7 @@ const onOK = async (item: typeof items[0]) => {
       <div>
         <b text="warm-gray-700" @click.stop="go('user', data.user?.id)">{{ data.user?.nickname }}</b>
         <span mx-1>{{ FeedType[data.type] }}</span>
-        <span text="warm-gray-700" @click.stop="go('subject', data.subject?.id)">{{ data.subject.name }}</span>
+        <span text="warm-gray-700" @click.stop="go('subject', data?.subject?.id)">{{ data?.subject?.name }}</span>
       </div>
       <div text="gray-500 sm">
         <span>{{ data.time }}</span>
