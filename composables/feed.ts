@@ -23,9 +23,9 @@ export const useFeedStore = defineStore('feed', () => {
     const s = sidName[sid]
     if (res.data) {
       feedList.value?.forEach((item, i) => {
-        if (item[sidName[sid]].id === params?.aid) {
+        if (item[s].id === params.aid && item.sid === params.sid) {
           if (feedList.value && feedList.value[i] && feedList.value[i][s])
-            feedList.value[i][sidName[sid]].up = feedList.value[i][sidName[sid]].up + 1
+            feedList.value[i][s].up = feedList.value[i][s].up + 1
         }
       })
 
