@@ -1,20 +1,42 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { IDigg, IFeed } from '~~/typings'
+import type { IDigg, IFeed, IPin } from '~~/typings'
 import { sidName } from '~~/typings/enum'
 
 export const useFeedStore = defineStore('feed', () => {
   const feedData = ref<IFeed>()
   const feedList = ref<(IFeed & { [key: string]: any })[]>()
   async function feed(id: string) {
-    const { data } = await getFeed(id)
-    if (data)
-      feedData.value = data
+    try {
+      const { data } = await getFeed(id)
+      if (data)
+        feedData.value = data
+    }
+    catch (error) {
+      feedData.value = {} as IFeed
+    }
   }
 
   async function list(params = {}) {
-    const { data } = await getFeedList(params)
-    if (data)
-      feedList.value = data.list
+    try {
+      const { data } = await getFeedList(params)
+      if (data)
+        feedList.value = data.list
+    }
+    catch (error) {
+      feedList.value = []
+    }
+  }
+
+  async function add(params: Pick<IPin, 'content' | 'sid'>): Promise<boolean> {
+    try {
+      const { data } = await addPin(params)
+      if (data)
+        feedList.value?.unshift(data)
+      return true
+    }
+    catch (error) {
+      return false
+    }
   }
 
   async function onDigg(params: IDigg) {
@@ -39,6 +61,7 @@ export const useFeedStore = defineStore('feed', () => {
     feed,
     list,
     onDigg,
+    add,
   }
 })
 

@@ -11,6 +11,7 @@ const { data } = defineProps<{ data: IFeed }>()
     <div flex="grow" ml-4>
       <Uesr :data="data" />
       <Subject v-if="data?.subject" :subject="data?.subject" />
+      <Pin v-if="data?.pin" :pin="data?.pin" />
       <FeedBar :data="data" />
     </div>
   </div>

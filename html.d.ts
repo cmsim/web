@@ -10,4 +10,5 @@ declare module '@vue/runtime-core' {
     [key: string]: any
   }
 }
+declare module 'vue-virtual-scroller';
 export {}

@@ -3,7 +3,7 @@ export enum FeedType {
   follow = '关注',
   score = '评分',
   evaluate = '评价',
-  add = '添加',
+  add = '添加了',
   update = '更新',
   wish = '想看',
   seen = '看过',
@@ -25,7 +25,7 @@ export enum modelName {
   ROLE, // 角色
   FAVORITE, // 收藏评分表
   TAG, // 标签
-  PINS, // 动态
+  PIN, // 动态
   FORWARD, // 转发
   COMMENT, // 评论表
   REPLY, // 评论回复表
@@ -46,7 +46,7 @@ export const sidName = {
   [modelName.ROLE]: 'role',
   [modelName.FAVORITE]: 'favorite',
   [modelName.TAG]: 'tag',
-  [modelName.PINS]: 'pins',
+  [modelName.PIN]: 'pin',
   [modelName.FORWARD]: 'forward',
   [modelName.COMMENT]: 'comment',
   [modelName.REPLY]: 'reply',

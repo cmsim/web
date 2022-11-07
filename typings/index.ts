@@ -80,6 +80,8 @@ export interface IFeed extends IHits, IDate, Omit<IId, 'cid'> {
   time: string
   subject: ISubject
   user: IUser
+  pin: IPin
+  collect: ICollect
 }
 
 export interface IMcat {
@@ -201,7 +203,7 @@ export interface ISetting {
   tag: string
 }
 
-export interface IFavorite extends IDate, Omit<IId, 'status'> {
+export interface ICollect extends IDate, Omit<IId, 'status'> {
   tags: string
   content: string
   ip: number

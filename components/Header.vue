@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ADialog } from 'anu-vue'
 import type { IUser } from '~~/typings'
 
 const isLogin = ref(false)
@@ -62,21 +61,21 @@ const onOK = async (item: typeof items[0]) => {
           登录
         </div>
       </div>
-      <ADialog
-        v-if="isLogin"
-        v-model="isLogin"
+      <Modal
+        :open="isLogin"
         title="登录"
+        @close="isLogin = false"
       >
         <Login :get-user="getUser" @close="isLogin = false" @reg="{ isLogin = false; isReg = true }" />
-      </ADialog>
+      </Modal>
 
-      <ADialog
-        v-if="isReg"
-        v-model="isReg"
+      <Modal
+        :open="isReg"
         title="注册"
+        @close="isReg = false"
       >
         <Reg :get-user="getUser" @close="isReg = false" @login="isLogin = true; isReg = false" />
-      </ADialog>
+      </Modal>
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 import { $fetch } from 'ohmyfetch'
 import LRU from 'lru-cache'
 import { hash as ohash } from 'ohash'
-import type { IDigg, IFavorite, IFeed, IListResponse, ISubject, IUser, PageResult } from '~~/typings'
+import type { ICollect, IDigg, IFeed, IListResponse, ISubject, IUser, PageResult } from '~~/typings'
 
 const cache = new LRU({
   max: 500,
@@ -17,13 +17,21 @@ const cache = new LRU({
  */
 function _fetchCWG(url: string, params: Record<string, string | number | undefined> = {}, method: 'POST' | 'GET' = 'GET') {
   const param = method === 'POST' ? { body: params } : { ...params }
-  const { $getAuth } = useNuxtApp()
+  const { $getAuth, $Toast } = useNuxtApp()
   const headers = { Authorization: `Bearer ${$getAuth()}` }
   return $fetch(url, {
     baseURL: 'http://127.0.0.1:7001',
     method,
     headers,
     ...param,
+  }).then((res) => {
+    if (res.status !== 200) {
+      $Toast()?.show?.(res.message, { position: 'top', type: 'warning' })
+      return Promise.reject(res)
+    }
+    else {
+      return res
+    }
   })
 }
 
@@ -139,9 +147,9 @@ export function getFeed(id: string): Promise<PageResult<IFeed>> {
 /**
  * 添加收藏
  * @param 参数
- * @returns IFavorite
+ * @returns ICollect
  */
-export function addFavorite(params = {}): Promise<PageResult<IFavorite>> {
+export function addCollect(params = {}): Promise<PageResult<ICollect>> {
   return fetchCWG('/api/favorite/add', params, 'POST')
 }
 
@@ -152,5 +160,14 @@ export function addFavorite(params = {}): Promise<PageResult<IFavorite>> {
  */
 export function addDigg(params = {}): Promise<PageResult<IDigg>> {
   return fetchCWG('/api/digg/add', params, 'POST')
+}
+
+/**
+ * 发表动态
+ * @param 参数
+ * @returns IPin
+ */
+export function addPin(params = {}): Promise<PageResult<IFeed>> {
+  return fetchCWG('/api/pin/add', params, 'POST')
 }
 

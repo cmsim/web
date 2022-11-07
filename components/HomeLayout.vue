@@ -11,7 +11,7 @@ const menu = [
 <template>
   <div flex="~" w-1200px pt-16 mx="auto">
     <div w-48 border="r gray-100 dark:warm-gray-800">
-      <nav p-2 w-48 border="r gray-100 dark:warm-gray-800" pos="fixed">
+      <nav pt-4 pr-4 w-48 border="r gray-100 dark:warm-gray-800" pos="fixed">
         <div v-for="item in menu" :key="item.name" px-4 h-10 flex items-center rounded="sm" :class="{ 'bg-#1d9bf0/10 text-#1d9bf0': route.path === item.link }" cursor="pointer" hover="bg-#1d9bf0/10 text-#1d9bf0 dark:bg-warm-gray-900 dark:text-white">
           <i :class="item.icon" inline-flex mr-2 />{{ item.name }}
         </div>
@@ -25,8 +25,8 @@ const menu = [
     <div flex-grow>
       <slot />
     </div>
-    <div w-70 border="l gray-100 dark:warm-gray-800">
-      <div pos="fixed" w-70>
+    <div w-70 pt-4 border="l gray-100 dark:warm-gray-800">
+      <div pos="fixed" w-70 pl-4>
         111
       </div>
     </div>

@@ -8,14 +8,11 @@ export default defineNuxtConfig({
   ],
   experimental: {
     reactivityTransform: true,
+    inlineSSRStyles: false,
   },
-  plugins: [
-    { src: '~/plugins/virtual' },
-    { src: '~/plugins/getAuth', ssr: false },
+  css: [
+    '@unocss/reset/tailwind.css',
   ],
-  unocss: {
-    preflight: true,
-  },
   colorMode: {
     classSuffix: '',
   },

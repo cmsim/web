@@ -1,7 +1,9 @@
 <script setup lang="ts">
+const { $Toast } = useNuxtApp()
 const feed = useFeedStore()
 await feed.list()
 const feedList = $computed(() => feed.feedList)
+$Toast()?.show?.('Hey! I\'m here', { position: 'top', type: 'success', duration: 4000 })
 </script>
 
 <template>

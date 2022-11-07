@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { modelName } from '~~/typings/enum'
+
+const feed = useFeedStore()
 const msg = ref('')
 const { textarea, input } = useTextareaAutosize()
 const items = [{ label: '公开', key: 'public' }, { label: '仅粉丝', key: 'fans' }, { label: '仅自己', key: 'self' }]
@@ -8,8 +11,13 @@ const onOK = async (item: typeof items[0]) => {
   console.log(item)
   cur.value = item
 }
-const onSubmit = () => {
+const onSubmit = async () => {
   console.log(input.value)
+  const res = await feed.add({ sid: modelName.PIN, content: input.value })
+  if (res) {
+    input.value = ''
+    msg.value = ''
+  }
 }
 
 const onInput = () => {
@@ -21,11 +29,11 @@ const onInput = () => {
   <div class="flex px-4 mt-4" border="b gray-100 dark:warm-gray-800">
     <div class="flex basis-12 mr-3">
       <div class="w-12 h-12 rounded-full overflow-hidden">
-        <img src="https://tva1.sinaimg.cn/large/006bnWk0gy1gzd2ej5yzyj301c01cgld.jpg">
+        <img src="//tva1.sinaimg.cn/large/006bnWk0gy1h7wtw4aeg5j30b40b4mx5.jpg">
       </div>
     </div>
     <div class="flex-1 relative">
-      <textarea ref="textarea" v-model="input" w-full p-3 leading-6 whitespace-pre-wrap break-words outline-none select-text text-base break-all bg="white dark:#121212" placeholder="有什么新鲜事？" class="placeholder-.light:text-#536471 resize-none" @input="onInput" />
+      <textarea ref="textarea" v-model="input" w-full h-12 p-3 leading-6 whitespace-pre-wrap break-words outline-none select-text text-base break-all bg="white dark:#121212" placeholder="有什么新鲜事？" class="placeholder-.light:text-#536471 resize-none" @input="onInput" />
       <div flex justify-between mt-3 mb-3 pt-3 border="t gray-100 dark:warm-gray-800">
         <div class="flex text-#1d9bf0 h-9 items-center relative">
           <div v-for="item in bar" :key="item.icon" flex items-center justify-center w-9 h-9 rounded-full cursor-pointer relative hover:bg="#1d9bf0/10" :class="{ 'pointer-events-none': item.disabled }">
