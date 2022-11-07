@@ -10,7 +10,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['close', 'login', 'getUser'])
 const code = ref<{ token: string; image: string }>()
-const onSubmit = async (values: IUser) => {
+const onSubmit = async (values: any) => {
   await reg({ ...values, token: code.value?.token })
   await props.getUser()
   await emit('close')

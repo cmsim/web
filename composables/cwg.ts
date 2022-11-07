@@ -18,7 +18,7 @@ const cache = new LRU({
 function _fetchCWG(url: string, params: Record<string, string | number | undefined> = {}, method: 'POST' | 'GET' = 'GET') {
   const param = method === 'POST' ? { body: params } : { ...params }
   const { $getAuth, $Toast } = useNuxtApp()
-  const headers = { Authorization: `Bearer ${$getAuth()}` }
+  const headers = { Authorization: `Bearer ${$getAuth}` }
   return $fetch(url, {
     baseURL: 'http://127.0.0.1:7001',
     method,
@@ -26,7 +26,7 @@ function _fetchCWG(url: string, params: Record<string, string | number | undefin
     ...param,
   }).then((res) => {
     if (res.status !== 200) {
-      $Toast()?.show?.(res.message, { position: 'top', type: 'warning' })
+      $Toast?.show?.(res.message, { position: 'top', type: 'warning' })
       return Promise.reject(res)
     }
     else {
