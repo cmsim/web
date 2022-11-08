@@ -62,17 +62,15 @@ const onOK = async (item: typeof items[0]) => {
         </div>
       </div>
       <Modal
-        :open="isLogin"
+        v-model="isLogin"
         title="登录"
-        @close="isLogin = false"
       >
         <Login :get-user="getUser" @close="isLogin = false" @reg="{ isLogin = false; isReg = true }" />
       </Modal>
 
       <Modal
-        :open="isReg"
+        v-model="isReg"
         title="注册"
-        @close="isReg = false"
       >
         <Reg :get-user="getUser" @close="isReg = false" @login="isLogin = true; isReg = false" />
       </Modal>

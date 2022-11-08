@@ -3,9 +3,11 @@ import { modelName } from '~~/typings/enum'
 
 const feed = useFeedStore()
 const msg = ref('')
+const pic = ref(false)
+const image = ref([])
 const { textarea, input } = useTextareaAutosize()
 const items = [{ label: '公开', key: 'public' }, { label: '仅粉丝', key: 'fans' }, { label: '仅自己', key: 'self' }]
-const bar = [{ icon: 'i-carbon-face-satisfied', disabled: false }, { icon: 'i-carbon-image', disabled: false }, { icon: 'i-carbon-link', disabled: false }, { icon: 'i-carbon-hashtag', disabled: true }, { icon: 'i-carbon-at', disabled: true }]
+const bar = [{ icon: 'i-carbon-face-satisfied', key: 'face', disabled: false }, { icon: 'i-carbon-image', key: 'image', disabled: false }, { icon: 'i-carbon-link', key: 'link', disabled: false }, { icon: 'i-carbon-hashtag', key: 'topic', disabled: true }, { icon: 'i-carbon-at', key: 'at', disabled: true }]
 const cur = ref(items[0])
 const onOK = async (item: typeof items[0]) => {
   console.log(item)
@@ -23,6 +25,17 @@ const onSubmit = async () => {
 const onInput = () => {
   msg.value = input.value
 }
+
+const chatBar = (key: string) => {
+  console.log(key)
+  if (key === 'image')
+    pic.value = true
+}
+
+const onImage = (data: any) => {
+  console.log(data)
+  image.value = data
+}
 </script>
 
 <template>
@@ -36,7 +49,7 @@ const onInput = () => {
       <textarea ref="textarea" v-model="input" w-full h-12 p-3 leading-6 whitespace-pre-wrap break-words outline-none select-text text-base break-all bg="white dark:#121212" placeholder="有什么新鲜事？" class="placeholder-.light:text-#536471 resize-none" @input="onInput" />
       <div flex justify-between mt-3 mb-3 pt-3 border="t gray-100 dark:warm-gray-800">
         <div class="flex text-#1d9bf0 h-9 items-center relative">
-          <div v-for="item in bar" :key="item.icon" flex items-center justify-center w-9 h-9 rounded-full cursor-pointer relative hover:bg="#1d9bf0/10" :class="{ 'pointer-events-none': item.disabled }">
+          <div v-for="item in bar" :key="item.icon" flex items-center justify-center w-9 h-9 rounded-full cursor-pointer relative hover:bg="#1d9bf0/10" :class="{ 'pointer-events-none': item.disabled }" @click="chatBar(item.key)">
             <div w-5 h-5 :class="item.icon" />
           </div>
         </div>
@@ -59,5 +72,11 @@ const onInput = () => {
         </div>
       </div>
     </div>
+    <Modal
+      v-model="pic"
+      title="添加图片"
+    >
+      <AddImage @onImage="onImage" />
+    </Modal>
   </div>
 </template>

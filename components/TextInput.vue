@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { AInput } from 'anu-vue'
 import { toRef } from 'vue'
 import { useField } from 'vee-validate'
 
@@ -49,19 +48,19 @@ const {
 </script>
 
 <template>
-  <div>
-    <AInput
+  <div mb-2>
+    <label :for="label">{{ label }}</label>
+    <input
       v-show="type !== 'hidden'"
-      :id="name"
-      :model-value="inputValue"
+      v-model="inputValue"
       :label="label"
       :name="name"
       :type="type"
-      :value="inputValue"
       :placeholder="placeholder"
-      @input="handleChange"
-      @blur="handleBlur"
-    />
+      border="~ solid gray-200 rounded-md"
+      w-full
+      px-2 h-10 @input="handleChange" @blur="handleBlur"
+    >
     <p v-if="errorMessage || meta.valid" class="text-red-500">
       {{ errorMessage || successMessage }}
     </p>

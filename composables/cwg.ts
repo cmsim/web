@@ -123,7 +123,7 @@ export function captcha() {
  * @returns IUser
  */
 export function getUserInfo(): Promise<PageResult<IUser>> {
-  return fetchCWG('/api/user/info')
+  return _fetchCWG('/api/user/info')
 }
 
 /**

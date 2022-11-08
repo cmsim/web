@@ -8,8 +8,8 @@ const emit = defineEmits(['close', 'reg', 'getUser'])
 const onSubmit = async (values: any) => {
   const res = await login({ ...values, password: md5(values.password!) })
   localStorage.token = res.data
-  await props.getUser?.()
-  await emit('close')
+  props.getUser()
+  emit('close')
 }
 
 function onInvalidSubmit() {
@@ -50,7 +50,6 @@ const schema = Yup.object().shape({
       />
       <div class="flex justify-between">
         <a @click="emit('reg')">注册</a>
-        <div><Checkbox label="记住登录" name="login" /></div>
       </div>
       <button class="submit-btn cursor-pointer" type="submit">
         登录

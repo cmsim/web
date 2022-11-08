@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ACheckbox } from 'anu-vue'
 import { toRef } from 'vue'
 import { useField } from 'vee-validate'
 
@@ -26,7 +25,9 @@ const {
 </script>
 
 <template>
-  <ACheckbox :id="name" v-model="value" color="info">
-    {{ label }}
-  </ACheckbox>
+  <label :for="label">label
+    <checkbox :id="name" v-model="value">
+      {{ label }}
+    </checkbox>
+  </label>
 </template>
