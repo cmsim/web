@@ -14,6 +14,8 @@ useHead({
 
 <template>
   <div>
-    {{ data }}
+    <UserLayout>
+      <div>{{ data }}</div>
+    </UserLayout>
   </div>
 </template>

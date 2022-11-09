@@ -24,7 +24,7 @@ function onInvalidSubmit() {
 // https://vee-validate.logaretm.com/v4/guide/validation#validation-schemas-with-yup
 const schema = Yup.object().shape({
   username: Yup.string().required('请输入用户名'),
-  password: Yup.string().min(6).required('请输入密码'),
+  password: Yup.string().min(8, '密码长度必须大于8位').required('请输入密码'),
 })
 </script>
 
@@ -48,83 +48,14 @@ const schema = Yup.object().shape({
         label="密码"
         placeholder="请输入密码"
       />
-      <div class="flex justify-between">
-        <a @click="emit('reg')">注册</a>
+      <div flex justify-end>
+        <button type="submit" w-20 flex bg="#1d9bf0" text-sm text-white h-9 px-4 justify-center items-center rounded-full cursor-pointer hover="bg-#1A8CD8" active="bg-#177CC0">
+          登录
+        </button>
       </div>
-      <button class="submit-btn cursor-pointer" type="submit">
-        登录
-      </button>
+      <div class="flex justify-end mt-4">
+        还没有注册？点击<a text="#1d9bf0" cursor-pointer @click="emit('reg')">注册</a>
+      </div>
     </Form>
   </div>
 </template>
-
-<style>
-:root {
-  --primary-color: #0071fe;
-  --error-color: #f23648;
-  --error-bg-color: #fddfe2;
-  --success-color: #21a67a;
-  --success-bg-color: #e0eee4;
-}
-
-.submit-btn {
-  background: var(--primary-color);
-  outline: none;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  padding: 10px 15px;
-  display: block;
-  width: 100%;
-  border-radius: 7px;
-  margin-top: 20px;
-  transition: opacity 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-.submit-btn:hover {
-  opacity: .8;
-}
-
-.submit-btn.invalid {
-  animation: shake 0.5s;
-  /* When the animation is finished, start again */
-  animation-iteration-count: infinite;
-}
-
-@keyframes shake {
-  0% {
-    transform: translate(1px, 1px);
-  }
-  10% {
-    transform: translate(-1px, -2px);
-  }
-  20% {
-    transform: translate(-3px, 0px);
-  }
-  30% {
-    transform: translate(3px, 2px);
-  }
-  40% {
-    transform: translate(1px, -1px);
-  }
-  50% {
-    transform: translate(-1px, 2px);
-  }
-  60% {
-    transform: translate(-3px, 1px);
-  }
-  70% {
-    transform: translate(3px, 1px);
-  }
-  80% {
-    transform: translate(-1px, -1px);
-  }
-  90% {
-    transform: translate(1px, 2px);
-  }
-  100% {
-    transform: translate(1px, -2px);
-  }
-}
-</style>

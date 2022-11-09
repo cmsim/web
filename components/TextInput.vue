@@ -48,20 +48,21 @@ const {
 </script>
 
 <template>
-  <div mb-2>
-    <label :for="label">{{ label }}</label>
-    <input
-      v-show="type !== 'hidden'"
-      v-model="inputValue"
-      :label="label"
-      :name="name"
-      :type="type"
-      :placeholder="placeholder"
-      border="~ solid gray-200 rounded-md"
-      w-full
-      px-2 h-10 @input="handleChange" @blur="handleBlur"
-    >
-    <p v-if="errorMessage || meta.valid" class="text-red-500">
+  <div mb-4>
+    <div flex items-center>
+      <label flex justify-end w-20 pr-2 :for="label">{{ label }}</label>
+      <input
+        v-show="type !== 'hidden'"
+        v-model="inputValue"
+        :name="name"
+        :type="type"
+        :placeholder="placeholder"
+        border="~ solid gray-200 rounded-md"
+        flex-grow
+        px-2 h-10 @input="handleChange" @blur="handleBlur"
+      >
+    </div>
+    <p v-if="errorMessage || meta.valid" pl-20 pt-2 class="text-red-500">
       {{ errorMessage || successMessage }}
     </p>
   </div>

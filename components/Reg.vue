@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Form } from 'vee-validate'
 import * as Yup from 'yup'
-import type { IUser } from '~~/typings'
 const props = defineProps({
   getUser: {
     type: Function,
@@ -27,12 +26,12 @@ function onInvalidSubmit() {
 // Using yup to generate a validation schema
 // https://vee-validate.logaretm.com/v4/guide/validation#validation-schemas-with-yup
 const schema = Yup.object().shape({
-  username: Yup.string().required('请输入用户名'),
-  email: Yup.string().email().required('请输入邮箱'),
-  password: Yup.string().min(6).required('请输入密码'),
+  username: Yup.string().min(6, '用户名必须大于6位').required('请输入用户名'),
+  email: Yup.string().email('邮箱地址不正确').required('请输入邮箱'),
+  password: Yup.string().min(8, '密码长度必须大于8位').required('请输入密码'),
   confirm_password: Yup.string()
     .required('请再次输入密码')
-    .oneOf([Yup.ref('password')], '两次输入密码不相同'),
+    .oneOf([Yup.ref('password')], '两次输入的密码不一致'),
   captcha: Yup.string().required('请输入验证码'),
 })
 
@@ -78,7 +77,7 @@ watchEffect(() => {
         label="确认密码"
         placeholder="请再次输入密码"
       />
-      <div class="flex mt-4 items-end">
+      <div class="flex mt-4 items-start">
         <TextInput
           name="captcha"
           type="text"
@@ -87,79 +86,9 @@ watchEffect(() => {
         />
         <div pb="1" pl="4" @click="getCode" v-html="code?.image" />
       </div>
-      <button class="submit-btn" type="submit">
+      <button type="submit" mt-2 w-full flex bg="#1d9bf0" text-sm text-white h-9 px-4 justify-center items-center rounded-full cursor-pointer hover="bg-#1A8CD8" active="bg-#177CC0">
         注册
       </button>
     </Form>
   </div>
 </template>
-
-<style>
-:root {
-  --primary-color: #0071fe;
-  --error-color: #f23648;
-  --error-bg-color: #fddfe2;
-  --success-color: #21a67a;
-  --success-bg-color: #e0eee4;
-}
-
-.submit-btn {
-  background: var(--primary-color);
-  outline: none;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  padding: 10px 15px;
-  display: block;
-  width: 100%;
-  border-radius: 7px;
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-.submit-btn:hover {
-    opacity: .8;
-}
-
-.submit-btn.invalid {
-  animation: shake 0.5s;
-  /* When the animation is finished, start again */
-  animation-iteration-count: infinite;
-}
-
-@keyframes shake {
-  0% {
-    transform: translate(1px, 1px);
-  }
-  10% {
-    transform: translate(-1px, -2px);
-  }
-  20% {
-    transform: translate(-3px, 0px);
-  }
-  30% {
-    transform: translate(3px, 2px);
-  }
-  40% {
-    transform: translate(1px, -1px);
-  }
-  50% {
-    transform: translate(-1px, 2px);
-  }
-  60% {
-    transform: translate(-3px, 1px);
-  }
-  70% {
-    transform: translate(3px, 1px);
-  }
-  80% {
-    transform: translate(-1px, -1px);
-  }
-  90% {
-    transform: translate(1px, 2px);
-  }
-  100% {
-    transform: translate(1px, -2px);
-  }
-}
-</style>
