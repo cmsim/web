@@ -20,7 +20,7 @@ const items = [
   { label: '退出', key: 'logout' },
 ]
 
-const onOK = async (item: typeof items[0]) => {
+const onOk = async (item: typeof items[0]) => {
   console.log(item)
   if (item.key === 'logout') {
     const res = await logout()
@@ -47,7 +47,7 @@ const onOK = async (item: typeof items[0]) => {
           <div i-carbon-search pos="absolute right-2 top-2" text="gray-400 dark:warm-gray-600" cursor="pointer" />
         </div>
         <div v-if="userInfo?.username">
-          <Dropdown :menu="items" :on-ok="onOK" trigger="hover">
+          <Dropdown :menu="items" trigger="hover" @onOk="onOk">
             <NuxtImg
               width="40"
               format="webp"

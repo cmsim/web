@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { OnClickOutsideHandler } from '@vueuse/core'
-const { menu, trigger, onOk, isSelected } = defineProps<{ menu: DropdownItem[]; trigger?: 'click' | 'hover'; onOk?: (menu: DropdownItem) => void; isSelected?: boolean }>()
+const { menu, trigger, isSelected } = defineProps<{ menu: DropdownItem[]; trigger?: 'click' | 'hover'; isSelected?: boolean }>()
+const emit = defineEmits(['onOk'])
 interface DropdownItem { label: string; key?: string; icon?: string; disabled?: boolean }
 const refReference = ref()
 const refFloating = ref()
@@ -21,8 +22,8 @@ const dropdownHandler: OnClickOutsideHandler = (event) => {
 }
 
 const onClick = (item: DropdownItem) => {
+  emit('onOk', item)
   cur.value = item.key
-  onOk?.(item)
   dropdown.value = false
 }
 </script>
