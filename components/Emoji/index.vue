@@ -21,7 +21,7 @@ const onScroll = (e: any) => {
 }
 const onTab = (index: number) => {
   tab.value = index
-  face.value?.scrollTo({ left: 0, top: tabArr.value[index], behavior: 'smooth' })
+  face.value?.scrollTo(0, tabArr.value[index])
 }
 
 onMounted(() => {
