@@ -16,25 +16,25 @@
     "lru-cache": "^7.14.1",
     "md5": "^2.3.0",
     "ohmyfetch": "^0.4.21",
-    "vee-validate": "^4.7.2",
+    "vee-validate": "^4.7.3",
     "vue-virtual-scroller": "next",
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.29.3",
+    "@antfu/eslint-config": "^0.31.0",
     "@iconify-json/bx": "^1.1.4",
-    "@iconify-json/carbon": "^1.1.9",
+    "@iconify-json/carbon": "^1.1.10",
     "@iconify-json/twemoji": "^1.1.5",
-    "@nuxt/image-edge": "1.0.0-27769790.4b27db3",
+    "@nuxt/image-edge": "1.0.0-27809804.194d2d6",
     "@nuxtjs/color-mode": "^3.1.8",
     "@pinia/nuxt": "^0.4.3",
     "@types/js-cookie": "^3.0.2",
     "@types/md5": "^2.3.2",
-    "@unocss/nuxt": "^0.46.3",
-    "@vueuse/nuxt": "^9.4.0",
-    "eslint": "^8.26.0",
-    "nuxt": "^3.0.0-rc.13",
+    "@unocss/nuxt": "^0.46.5",
+    "@vueuse/nuxt": "^9.5.0",
+    "eslint": "^8.27.0",
+    "nuxt": "^3.0.0",
     "pinia": "^2.0.23",
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.3"
   }
 }
